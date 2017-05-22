@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  eligible_qtty: 1
+  new_price: 9.99
+  client: one
+  product: one
+
+two:
+  eligible_qtty: 1
+  new_price: 9.99
+  client: two
+  product: two
