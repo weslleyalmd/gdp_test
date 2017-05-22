@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>More For Less Rules</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @more_for_less_rules.each do |more_for_less_rule| %>
+      <tr>
+        <td>Client: <%= more_for_less_rule.client[:name] %></td>
+        <td>Product: <%= more_for_less_rule.product[:name] %></td>
+        <td>Eligible Qtty: <%= more_for_less_rule[:eligible_qtty] %></td>
+        <td>Collectible Qtty: <%= more_for_less_rule[:collectible_qtty] %></td>
+        <td><%= link_to 'Edit', edit_more_for_less_rule_path(more_for_less_rule) %></td>
+        <td><%= link_to 'Destroy', more_for_less_rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rule', new_more_for_less_rule_path %>

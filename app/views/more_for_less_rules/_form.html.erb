@@ -1,0 +1,12 @@
+<%= simple_form_for more_for_less_rule do |f| %>
+  <div class="form-inputs">
+    <%= f.association :client,  prompt: "Choose a Client"  %>
+    <%= f.association :product, prompt: "Choose a Product" %>
+    <%= f.input :eligible_qtty,    :input_html => {:value => f.object.eligible_qtty    || 0} %>
+    <%= f.input :collectible_qtty, :input_html => {:value => f.object.collectible_qtty || 0} %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Save" %>
+  </div>
+<%end%>
