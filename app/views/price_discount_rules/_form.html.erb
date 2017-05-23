@@ -1,0 +1,12 @@
+<%= simple_form_for price_discount_rule do |f| %>
+  <div class="form-inputs">
+    <%= f.association :client,  prompt: "Choose a Client"  %>
+    <%= f.association :product, prompt: "Choose a Product" %>
+    <%= f.input :eligible_qtty, :input_html => {:value => f.object.eligible_qtty || 0}, label: "Eligible qtty (use 0 to apply new price always)" %>
+    <%= f.input :new_price,     :input_html => {:value => f.object.new_price || 0} %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Save" %>
+  </div>
+<%end%>
