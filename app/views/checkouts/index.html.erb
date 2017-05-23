@@ -1,0 +1,78 @@
+<style>
+  ul { list-style-type: none; margin: 0; padding: 0; margin-bottom: 10px; min-height: 100px}
+  li { margin: 5px; padding: 5px; width: 150px; background-color: antiquewhite }
+  td { vertical-align: top; min-width: 180px; }
+  td#trash { min-height: 122px; background-color: red; }
+  th { text-align: -webkit-left; }
+</style>
+<p id="notice"><%= notice %></p>
+
+<h1>Choose your products</h1>
+
+<br>
+
+<%= simple_form_for :checkout, url: '/checkout/total' do |f| %>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="3">
+          <div class="input select required checkout_client_id">
+            <label class="select required" for="checkout_client_id"><abbr title="required">*</abbr> Who are you?</label>
+            <select class="select required" required="required" aria-required="Select..." name="checkout[client_id]" id="checkout_client_id">
+              <% @clients.each do |client| %>
+                <option value="<%= client['id'] %>"><%= client['name'] %></option>
+              <% end %>
+            </select>
+          </div>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Select your products...</td>
+        <td>Your products</td>
+        <td>Traaaash</td>
+      </tr>
+      <tr>
+        <td>
+          <ul>
+            <% @products.each do |product| %>
+              <input class="draggable ui-state-highlight" name="checkout[product_id][]" ><%= product['name'] %></input>
+            <%end%>
+          </ul>
+        </td>
+        <td>
+          <ul id="sortable">
+          </ul>
+        </td>
+        <td id="trash"></td>
+      </tr>
+    </tbody>
+  </table>
+<%end%>
+
+<script>
+
+  $( function() {
+    $( "#sortable" ).sortable({
+      revert: true,
+    });
+
+    $( ".draggable" ).draggable({
+      connectToSortable: "#sortable",
+      helper: "clone",
+      revert: "invalid"
+    });
+
+    $( "ul, li" ).disableSelection();
+
+    $('#trash').droppable({
+      drop: function(event, ui) {
+        ui.draggable.remove();
+      }
+    });
+
+  });
+
+</script>
