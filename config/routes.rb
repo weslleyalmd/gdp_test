@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'application#index'
+
   resources :price_discount_rules
   resources :more_for_less_rules
   resources :products
